@@ -18,37 +18,33 @@ services:
   # Backend Service
   - type: web
     name: verbia-bookstore-backend # You can change this to your unique name
-    env: node
+    runtime: node
     rootDir: backend
     plan: free
     buildCommand: "npm install && npm run db:migrate"
     startCommand: "node src/server.js"
     envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: verbia-bookstore-db
+          property: connectionString
       - key: NODE_ENV
         value: production
       - fromGroup: verbia-bookstore-secrets # You will create this group in Render
 
+databases:
   # PostgreSQL Database
-  - type: psql
-    name: verbia-bookstore-db # You can change this to your unique name
+  - name: verbia-bookstore-db # You can change this to your unique name
     plan: free
 
 envVarGroups:
   - name: verbia-bookstore-secrets
     envVars:
-      - key: DB_USER
-        value: YOUR_DATABASE_USER # Replace with your Render DB User
-      - key: DB_PASSWORD
-        value: YOUR_DATABASE_PASSWORD # Replace with your Render DB Password
-      - key: DB_NAME
-        value: YOUR_DATABASE_NAME # Replace with your Render DB Name
-      - key: DB_HOST
-        value: YOUR_DATABASE_HOST # Replace with your Render DB Host
       - key: JWT_SECRET
-        value: YOUR_JWT_SECRET # Replace with a long random string
+        value: 9888bcb02f9e924a9c38a67d5296689b20727d58d74cfc10a48eaf775eb77f050084631dfcca18849c863801494f7f6c5e4fcf26bb8e
       - key: SESSION_SECRET
         value: YOUR_SESSION_SECRET # Replace with a long random string
       - key: STRIPE_SECRET_KEY
-        value: YOUR_STRIPE_SECRET_KEY # Replace with your Stripe Secret Key
+        value: sk_test_51RZvezCtWRWcpeYWwdPgvw4wJFhV2mNnLhS7ji78TGRrHg9n7RBxsFmp8k45woYlNrq55TK1dJH5CNAAL1KJ2P4y000TZKzaDt
       - key: CLIENT_URL
-        value: https://verbia-bookstore-frontend.onrender.com # This should match your frontend service name
+        value: https://verbia-bookstore-ecommerce-pern.vercel.app/
