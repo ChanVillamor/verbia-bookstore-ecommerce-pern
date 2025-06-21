@@ -19,7 +19,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: true, // Allow all origins in development
+  origin: [
+    'https://verbia-bookstore-ecommerce-pern.vercel.app/',
+    'http://localhost:5173' 
+  ], // Allow all origins in development
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
