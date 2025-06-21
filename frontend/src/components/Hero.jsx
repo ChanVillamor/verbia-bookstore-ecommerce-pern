@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useProducts } from "../contexts/ProductContext";
+import { getImageSrc } from "../utils/helpers";
 
 const Hero = () => {
   const { featuredProducts, fetchFeaturedProducts, loading } = useProducts();
@@ -38,10 +39,7 @@ const Hero = () => {
               className="absolute top-0 left-1/2 z-20 w-28 h-40 transition-transform duration-300 transform -translate-x-1/2 md:w-36 md:h-56 hover:scale-110"
             >
               <img
-                src={`${
-                  import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                  "http://localhost:5000"
-                }${featuredProducts[0].image}`}
+                src={getImageSrc(featuredProducts[0].image)}
                 alt="Book Cover"
                 className="object-cover w-full h-full rounded-lg"
               />
@@ -53,10 +51,7 @@ const Hero = () => {
               className="absolute bottom-10 left-1/4 z-10 w-28 h-40 transition-transform duration-300 transform -translate-x-1/2 md:w-36 md:h-56 hover:scale-110"
             >
               <img
-                src={`${
-                  import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                  "http://localhost:5000"
-                }${featuredProducts[1].image}`}
+                src={getImageSrc(featuredProducts[1].image)}
                 alt="Book Cover"
                 className="object-cover w-full h-full rounded-lg"
               />
@@ -68,10 +63,7 @@ const Hero = () => {
               className="absolute bottom-10 right-1/4 z-10 w-28 h-40 transition-transform duration-300 transform translate-x-1/2 md:w-36 md:h-56 hover:scale-110"
             >
               <img
-                src={`${
-                  import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                  "http://localhost:5000"
-                }${featuredProducts[2].image}`}
+                src={getImageSrc(featuredProducts[2].image)}
                 alt="Book Cover"
                 className="object-cover w-full h-full rounded-lg"
               />

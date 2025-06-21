@@ -31,10 +31,11 @@ router.post('/register', [
     });
 
     // Create token
+    const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
     const token = jwt.sign(
       { id: user.id },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
+      { expiresIn }
     );
 
     res.status(201).json({
@@ -96,10 +97,11 @@ router.post('/login', [
     }
 
     // Create token
+    const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
     const token = jwt.sign(
       { id: user.id },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
+      { expiresIn }
     );
 
     console.log('Login successful for:', email);
