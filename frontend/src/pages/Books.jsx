@@ -4,6 +4,7 @@ import { useProducts } from "../contexts/ProductContext";
 import { useCart } from "../contexts/CartContext";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useAuth } from "../contexts/AuthContext";
+import { getImageSrc } from "../utils/helpers";
 
 const Books = () => {
   const navigate = useNavigate();
@@ -158,10 +159,7 @@ const Books = () => {
             >
               <div className="relative">
                 <img
-                  src={`${
-                    import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                    "http://localhost:5000"
-                  }${product.image}`}
+                  src={getImageSrc(product.image)}
                   alt={product.title}
                   className="w-full h-48 object-cover rounded"
                   onClick={() => navigate(`/products/${product.id}`)}

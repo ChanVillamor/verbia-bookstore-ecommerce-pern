@@ -4,6 +4,7 @@ import { productsAPI, categoriesAPI } from "../services/api";
 import { useCart } from "../contexts/CartContext";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useAuth } from "../contexts/AuthContext";
+import { getImageSrc } from "../utils/helpers";
 
 const BookCollection = () => {
   const [books, setBooks] = useState([]);
@@ -191,10 +192,7 @@ const BookCollection = () => {
           >
             <div className="relative">
               <img
-                src={`${
-                  import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                  "http://localhost:5000"
-                }${book.image}`}
+                src={getImageSrc(book.image)}
                 alt={book.title}
                 className="object-cover mb-4 w-full h-48 rounded"
                 onClick={() => navigate(`/products/${book.id}`)}

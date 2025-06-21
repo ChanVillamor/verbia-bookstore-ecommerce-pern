@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { adminAPI } from "../../services/api";
 import Swal from "sweetalert2";
+import { getImageSrc } from "../../utils/helpers";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -212,16 +213,7 @@ const Products = () => {
                       <div className="flex-shrink-0 w-12 h-12">
                         <img
                           className="object-cover w-12 h-12 rounded-lg"
-                          src={
-                            product.image
-                              ? `${
-                                  import.meta.env.VITE_API_URL?.replace(
-                                    "/api",
-                                    ""
-                                  ) || "http://localhost:5000"
-                                }${product.image}`
-                              : "/placeholder-book.jpg"
-                          }
+                          src={getImageSrc(product.image)}
                           alt={product.title}
                         />
                       </div>

@@ -4,6 +4,7 @@ import { productsAPI } from "../services/api";
 import { useCart } from "../contexts/CartContext";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useAuth } from "../contexts/AuthContext";
+import { getImageSrc } from "../utils/helpers";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
@@ -83,12 +84,7 @@ const Search = () => {
             >
               <div className="relative">
                 <img
-                  src={
-                    `${
-                      import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                      "http://localhost:5000"
-                    }${book.image}` || "/placeholder-book.jpg"
-                  }
+                  src={getImageSrc(book.image)}
                   alt={book.title}
                   className="h-48 w-full object-cover rounded mb-4"
                   onClick={() => navigate(`/products/${book.id}`)}

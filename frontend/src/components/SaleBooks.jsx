@@ -4,6 +4,7 @@ import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { getImageSrc } from "../utils/helpers";
 
 const SaleBooks = () => {
   const { fetchSaleProducts, saleProducts, loading, error } = useProducts();
@@ -77,7 +78,7 @@ const SaleBooks = () => {
                 <Link to={`/products/${book.id}`}>
                   <div className="relative">
                     <img
-                      src={`${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}${book.image}`}
+                      src={getImageSrc(book.image)}
                       alt={book.title}
                       className="w-full h-64 object-cover"
                     />

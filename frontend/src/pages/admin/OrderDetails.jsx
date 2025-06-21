@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ordersAPI, adminAPI } from "../../services/api";
 import Swal from "sweetalert2";
+import { getImageSrc } from "../../utils/helpers";
 
 const AdminOrderDetails = () => {
   const { id } = useParams();
@@ -240,16 +241,7 @@ const AdminOrderDetails = () => {
                   {order.orderDetails?.map((item) => (
                     <div key={item.id} className="flex items-center space-x-4">
                       <img
-                        src={
-                          item.product?.image?.startsWith("http")
-                            ? item.product.image
-                            : `${
-                                import.meta.env.VITE_API_URL?.replace(
-                                  "/api",
-                                  ""
-                                ) || "http://localhost:5000"
-                              }${item.product?.image}`
-                        }
+                        src={getImageSrc(item.product?.image)}
                         alt={item.product?.title}
                         className="object-cover w-16 h-20 rounded"
                       />

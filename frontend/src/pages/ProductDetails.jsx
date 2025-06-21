@@ -5,6 +5,7 @@ import { useCart } from "../contexts/CartContext";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useReviews } from "../contexts/ReviewContext";
 import { useAuth } from "../contexts/AuthContext";
+import { getImageSrc } from "../utils/helpers";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -101,10 +102,7 @@ const ProductDetails = () => {
               {/* Product Image */}
               <div className="relative">
                 <img
-                  src={`${
-                    import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                    "http://localhost:5000"
-                  }${product.image}`}
+                  src={getImageSrc(product.image)}
                   alt={product.title}
                   className="object-cover w-full h-96 rounded-lg"
                 />

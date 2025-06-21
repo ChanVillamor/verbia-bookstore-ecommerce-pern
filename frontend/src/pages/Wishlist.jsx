@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useCart } from "../contexts/CartContext";
+import { getImageSrc } from "../utils/helpers";
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -91,10 +92,7 @@ const Wishlist = () => {
                   className="bg-white rounded-lg shadow-sm overflow-hidden"
                 >
                   <img
-                    src={`${
-                      import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                      "http://localhost:5000"
-                    }${item.image}`}
+                    src={getImageSrc(item.image)}
                     alt={item.title}
                     className="w-20 h-24 object-cover rounded"
                   />

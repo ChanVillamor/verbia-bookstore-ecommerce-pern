@@ -11,6 +11,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { getImageSrc } from "../utils/helpers";
 
 // Load Stripe outside of component to avoid recreating on every render
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -324,10 +325,7 @@ const Checkout = () => {
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex items-center space-x-4">
                     <img
-                      src={`${
-                        import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                        "http://localhost:5000"
-                      }${item.image}`}
+                      src={getImageSrc(item.image)}
                       alt={item.title}
                       className="w-16 h-20 object-cover rounded"
                     />

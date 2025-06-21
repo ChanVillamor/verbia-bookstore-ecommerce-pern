@@ -71,3 +71,9 @@ export const debounce = (func, wait) => {
     timeout = setTimeout(later, wait);
   };
 }; 
+
+export function getImageSrc(imagePath) {
+  if (!imagePath) return "/placeholder-book.jpg"; // fallback
+  if (imagePath.startsWith("http")) return imagePath;
+  return `${import.meta.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000"}${imagePath}`;
+} 

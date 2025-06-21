@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
+import { getImageSrc } from "../utils/helpers";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const Cart = () => {
                   className="p-6 border-b last:border-b-0 flex flex-col md:flex-row items-center md:items-start"
                 >
                   <img
-                    src={`${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}${item.image}`}
+                    src={getImageSrc(item.image)}
                     alt={item.title}
                     className="w-20 h-24 object-cover rounded"
                   />

@@ -4,6 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useProducts } from "../../contexts/ProductContext";
 import { adminAPI } from "../../services/api";
 import Swal from "sweetalert2";
+import { getImageSrc } from "../../utils/helpers";
 
 const ProductEdit = () => {
   const navigate = useNavigate();
@@ -411,12 +412,7 @@ const ProductEdit = () => {
                     src={
                       formData.imageFile
                         ? URL.createObjectURL(formData.imageFile)
-                        : formData.image
-                        ? `${
-                            import.meta.env.VITE_API_URL?.replace("/api", "") ||
-                            "http://localhost:5000"
-                          }${formData.image}`
-                        : ""
+                        : getImageSrc(formData.image)
                     }
                     alt="Current product"
                     className="object-cover w-32 h-32 rounded"
