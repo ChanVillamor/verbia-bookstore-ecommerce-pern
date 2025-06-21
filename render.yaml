@@ -1,8 +1,8 @@
 services:
   # Frontend Service
-  - type: static
+  - type: web
     name: verbia-bookstore-frontend # You can change this to your unique name
-    env: static
+    runtime: static
     rootDir: frontend
     plan: free
     buildCommand: "npm install && npm run build"
