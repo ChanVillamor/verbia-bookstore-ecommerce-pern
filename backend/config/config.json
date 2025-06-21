@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "2003",
+    "database": "book_ecommerce",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "2003",
+    "database": "book_ecommerce_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "2003",
+    "database": "book_ecommerce_prod",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+} 
+
