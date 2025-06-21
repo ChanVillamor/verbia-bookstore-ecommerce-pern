@@ -1,4 +1,20 @@
 services:
+  # Frontend Service
+  - type: static
+    name: verbia-bookstore-frontend # You can change this to your unique name
+    env: static
+    rootDir: frontend
+    plan: free
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
+    envVars:
+      - key: VITE_API_URL
+        value: https://verbia-bookstore-backend.onrender.com # This should match your backend service name
+
   # Backend Service
   - type: web
     name: verbia-bookstore-backend # You can change this to your unique name
@@ -35,4 +51,4 @@ envVarGroups:
       - key: STRIPE_SECRET_KEY
         value: YOUR_STRIPE_SECRET_KEY # Replace with your Stripe Secret Key
       - key: CLIENT_URL
-        value: YOUR_VERCEL_FRONTEND_URL # Replace with your Vercel URL
+        value: https://verbia-bookstore-frontend.onrender.com # This should match your frontend service name
